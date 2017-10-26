@@ -11971,9 +11971,7 @@ Standard deviation of prices: $165,171.13
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> I would expect for the number of bedrooms be positively correlated to the price, while the LSTAT and PTRATIO to be negatively correlated, ie the higher the number of poor working people and the higher the number of students per teacher, the lower the prices will be.
-the number of bedrooms drives the price up because it inherently means that the house has more square feet, which means that price is higher - because price of a house is very often calculated as a function of the size of a house ie dollars per square foot.
-The LSTAT and PTRATIO will affect the price negatively because people want to lie in the best ie most expensive neighberhoods they can afford, next to best schools ( with most teachers per pupil) and as far away from poor people (and possibly crime... at least in their imagination).</p>
+<p><strong>Answer: </strong> I would expect for the number of bedrooms be positively correlated to the price, while the LSTAT and PTRATIO to be negatively correlated, ie the higher the number of poor working people and the higher the number of students per teacher, the lowe the prices will be.</p>
 
 </div>
 </div>
@@ -12005,7 +12003,7 @@ The LSTAT and PTRATIO will affect the price negatively because people want to li
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;r2_score&#39;</span>
@@ -12015,14 +12013,7 @@ The LSTAT and PTRATIO will affect the price negatively because people want to li
 <span class="sd">        true and predicted values based on the metric chosen. &quot;&quot;&quot;</span>
     
     <span class="c1"># TODO: Calculate the performance score between &#39;y_true&#39; and &#39;y_predict&#39;</span>
-    <span class="c1">#score = r2_score(y_true,y_predict) #this is the  sklearn implementation of R2</span>
-    
-    <span class="c1"># y_true_mean = np.mean(y_true) </span>
-    
-    <span class="c1">## implementation of R2 - thanks reviewer for the suggestion!</span>
-    <span class="n">SSres</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_predict</span><span class="p">)))</span>
-    <span class="n">SStot</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_true_mean</span><span class="p">)))</span>
-    <span class="n">score</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">SSres</span><span class="o">/</span><span class="n">SStot</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="n">y_predict</span><span class="p">)</span>
     
     <span class="c1"># Return the score</span>
     <span class="k">return</span> <span class="n">score</span>
@@ -12074,7 +12065,7 @@ The LSTAT and PTRATIO will affect the price negatively because people want to li
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Calculate the performance of this model</span>
@@ -13899,7 +13890,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;make_scorer&#39;, &#39;DecisionTreeRegressor&#39;, and &#39;GridSearchCV&#39;</span>
@@ -13917,7 +13908,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
     <span class="n">cv_sets</span> <span class="o">=</span> <span class="n">ShuffleSplit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># TODO: Create a decision tree regressor object</span>
-    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="s2">&quot;666&quot;</span><span class="p">)</span>
+    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
 
     <span class="c1"># TODO: Create a dictionary for the parameter &#39;max_depth&#39; with a range from 1 to 10</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span> <span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)}</span>
@@ -13929,7 +13920,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
     <span class="c1"># Make sure to include the right parameters in the object:</span>
     <span class="c1"># (estimator, param_grid, scoring, cv) which have values &#39;regressor&#39;, &#39;params&#39;, &#39;scoring_fnc&#39;, and &#39;cv_sets&#39; respectively.</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">regressor</span><span class="p">,</span> <span class="n">param_grid</span> <span class="o">=</span> <span class="n">params</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="n">scoring_fnc</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="n">cv_sets</span><span class="p">)</span>
-    <span class="c1">#grid = GridSearchCV(regressor, param_grid = params, scoring = scoring_fnc, cv = cv_sets)</span>
+    <span class="c1">#why not: grid = GridSearchCV(regressor, param_grid = params, scoring = scoring_fnc, cv = cv_sets)</span>
 
     <span class="c1"># Fit the grid search object to the data to compute the optimal model</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -13998,7 +13989,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Fit the training data to the model using grid search</span>
@@ -14022,7 +14013,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Parameter &#39;max_depth&#39; is 4 for the optimal model.
+<pre>Parameter &#39;max_depth&#39; is 5 for the optimal model.
 </pre>
 </div>
 </div>
@@ -14036,7 +14027,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong> Hint: </strong> The answer comes from the output of the code snipped above.</p>
-<p><strong>Answer: </strong> Parameter 'max_depth' is 4 for the optimal model. It is the same answer I gae in Q6. My informed guess was correct.</p>
+<p><strong>Answer: </strong> Parameter 'max_depth' is 4 for the optimal model.</p>
 
 </div>
 </div>
@@ -14087,7 +14078,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Produce a matrix for client data</span>
@@ -14098,7 +14089,6 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 <span class="c1"># Show predictions</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">client_data</span><span class="p">)):</span>
     <span class="k">print</span> <span class="s2">&quot;Predicted selling price for Client {}&#39;s home: ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">features</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span> <span class="c1"># thanks for the suggestion reviewer!</span>
 </pre></div>
 
 </div>
@@ -14115,18 +14105,9 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Predicted selling price for Client 1&#39;s home: $407,642.31
-Predicted selling price for Client 2&#39;s home: $239,126.09
-Predicted selling price for Client 3&#39;s home: $851,200.00
-               RM       LSTAT     PTRATIO
-count  489.000000  489.000000  489.000000
-mean     6.240288   12.939632   18.516564
-std      0.643650    7.081990    2.111268
-min      3.561000    1.980000   12.600000
-25%      5.880000    7.370000   17.400000
-50%      6.185000   11.690000   19.100000
-75%      6.575000   17.120000   20.200000
-max      8.398000   37.970000   22.000000
+<pre>Predicted selling price for Client 1&#39;s home: $414,575.00
+Predicted selling price for Client 2&#39;s home: $231,950.00
+Predicted selling price for Client 3&#39;s home: $882,000.00
 </pre>
 </div>
 </div>
@@ -14139,10 +14120,9 @@ max      8.398000   37.970000   22.000000
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong></p>
-<p><strong>Predicted selling price for Client 1's home: <code>414,575.00 dollars</code></strong> - the median price for houses is <code>438,900.00</code>. This house is priced slightly below the median price probably because it has below mean number of rooms. It is also in a poorere neighborhood than average. On the other hand the student to teacher ratio is slightly higher than average.</p>
-<p><strong>Predicted selling price for Client 2's home: <code>231,950.00</code> dollars</strong> - This house is priced significantly below the median price probably because it has very small number of rooms (less than 25% of the houses). It is also in a neihborhood that has very close to the highest poverty level LSTAT and the highest recorded student to teacher number.</p>
-<p><strong>Predicted selling price for Client 3's home: <code>882,000.00</code> dollars</strong> This house is priced significantly above the median price probably because it has large number of rooms and</p>
+<p><strong>Answer: </strong> Predicted selling price for Client 1's home: $414,575.00
+Predicted selling price for Client 2's home: $231,950.00
+Predicted selling price for Client 3's home: $882,000.00</p>
 
 </div>
 </div>
